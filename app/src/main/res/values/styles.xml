@@ -8,4 +8,9 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+
+    <style name="EditText">
+        <item name="android:background">@drawable/background_edit_text</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+    </style>
 </resources>

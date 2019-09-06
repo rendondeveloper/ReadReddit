@@ -1,11 +1,13 @@
 package com.example.rendondev.readreddit.ReadRedditMvp.View;
 
+import android.animation.ObjectAnimator;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 
 import com.example.rendondev.readreddit.R;
@@ -28,6 +30,9 @@ public class ReadRedditActivity extends AppCompatActivity implements IReadReddit
     @BindView(R.id.rvCards)
     RecyclerView rvCards;
 
+    @BindView(R.id.etSearch)
+    EditText etSearch;
+
     private PostAdapter adapter;
     private List<Child> postList;
     private IReadRedditPresenter presenter;
@@ -45,7 +50,24 @@ public class ReadRedditActivity extends AppCompatActivity implements IReadReddit
         this.initList();
         this.presenter = new ReadRedditPresenter(this, this);
         this.presenter.GetRedditList();
+        this.etSearch.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    ObjectAnimator anim = ObjectAnimator.ofFloat(etSearch, "scaleX", 1.3f);
+                    anim.setDuration(2000); // duration 3 seconds
+                    anim.start();
+                } else {
+                    ObjectAnimator anim = ObjectAnimator.ofFloat(etSearch, "scaleX", 0.5f);
+                    anim.setDuration(2000); // duration 3 seconds
+                    anim.start();
+                }
+            }
+        });
+
+        this.etSearch.clearFocus();
     }
+
 
     @Override
     public void SetDataList(final List<Child> postList) {
