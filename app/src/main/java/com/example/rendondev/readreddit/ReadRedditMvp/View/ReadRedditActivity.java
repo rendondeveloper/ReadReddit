@@ -1,4 +1,4 @@
-package com.example.rendondev.readreddit;
+package com.example.rendondev.readreddit.ReadRedditMvp.View;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -8,11 +8,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.LinearLayout;
 
+import com.example.rendondev.readreddit.R;
 import com.example.rendondev.readreddit.ReadRedditMvp.Data.Child;
 import com.example.rendondev.readreddit.ReadRedditMvp.Presenter.IReadRedditPresenter;
 import com.example.rendondev.readreddit.ReadRedditMvp.Presenter.ReadRedditPresenter;
 import com.example.rendondev.readreddit.ReadRedditMvp.View.Adapter.PostAdapter;
-import com.example.rendondev.readreddit.ReadRedditMvp.View.IReadRedditView;
 
 import java.util.ArrayList;
 import java.util.List;

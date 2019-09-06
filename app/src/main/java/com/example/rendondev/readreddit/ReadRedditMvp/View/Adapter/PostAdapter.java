@@ -31,7 +31,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostHolder> {
     }
 
     @Override
-    public PostHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public PostHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         final View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card, parent, false);
         return new PostHolder(view);
     }
@@ -75,7 +75,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostHolder> {
         @BindView(R.id.tvNumberDowns)
         TextView tvNumberDowns;
 
-        public PostHolder(View itemView) {
+        private PostHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
         }

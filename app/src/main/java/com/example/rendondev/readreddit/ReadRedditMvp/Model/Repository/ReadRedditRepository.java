@@ -9,7 +9,6 @@ import android.util.Log;
 import com.example.rendondev.readreddit.ReadRedditMvp.Data.ReponsePost;
 import com.example.rendondev.readreddit.ReadRedditMvp.Model.Interactor.IReadRedditInteractor;
 import com.example.rendondev.readreddit.ReadRedditMvp.Model.Retrofic.ApiClient;
-import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import retrofit2.Call;
@@ -22,13 +21,11 @@ public class ReadRedditRepository implements IReadRedditRepository {
 
     final private Activity activity;
     final private IReadRedditInteractor interactor;
-    final Gson gson = new GsonBuilder().create();
-    final private String URL_BASE = "http://www.reddit.com/r/";
-    final Retrofit retrofic = new Retrofit.Builder()
-            .baseUrl(URL_BASE)
-            .addConverterFactory(GsonConverterFactory.create(gson))
+    final private Retrofit retrofic = new Retrofit.Builder()
+            .baseUrl("http://www.reddit.com/r/")
+            .addConverterFactory(GsonConverterFactory.create(new GsonBuilder().create()))
             .build();
-    final ApiClient apiClient = retrofic.create(ApiClient.class);
+    final private ApiClient apiClient = retrofic.create(ApiClient.class);
 
 
     public ReadRedditRepository(final IReadRedditInteractor interactor, final Activity activity) {
