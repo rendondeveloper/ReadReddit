@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">ReadReddit</string>
+    <string name="message_internet_not_available">No cuenta con internet</string>
 </resources>
