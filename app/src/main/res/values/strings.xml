@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">ReadReddit</string>
-    <string name="message_internet_not_available">No cuenta con internet</string>
+    <string name="message_validation_topics_empty">Ingresa al menos una letra para buscar en los topics.</string>
+    <string name="text_default">Ok</string>
+    <string name="text_default_title">Atención</string>
+    <string name="dummy_text_default_edit_text_search">FUNNY</string>
+    <string name="text_screen_internet_not_available">Cuando tengas internet podrás realizar búsquedas.</string>
 </resources>

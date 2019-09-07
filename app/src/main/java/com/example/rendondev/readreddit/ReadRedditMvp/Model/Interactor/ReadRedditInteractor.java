@@ -22,8 +22,8 @@ public class ReadRedditInteractor implements IReadRedditInteractor {
     }
 
     @Override
-    public void GetRedditList() {
-        this.repository.GetRedditList();
+    public void GetRedditList(final String topic) {
+        this.repository.GetRedditList(topic);
     }
 
     @Override

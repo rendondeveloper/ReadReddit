@@ -75,7 +75,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostHolder> {
         @BindView(R.id.tvNumberDowns)
         TextView tvNumberDowns;
 
-        private PostHolder(View itemView) {
+        public PostHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
         }

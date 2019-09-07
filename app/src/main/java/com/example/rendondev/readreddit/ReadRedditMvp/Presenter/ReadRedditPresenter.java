@@ -22,21 +22,30 @@ public class ReadRedditPresenter implements IReadRedditPresenter {
     }
 
     @Override
-    public void GetRedditList() {
-        this.interactor.GetRedditList();
-    }
-
-    @Override
-    public void SetDataList(final List<Child> postList) {
-        if (postList == null) {
-            this.view.ShowEmptyState();
+    public void GetRedditList(final String topic) {
+        if (topic != null && !topic.isEmpty()) {
+            this.view.ManagerState(0);
+            this.view.AnimationSearchStarOrStop();
+            this.interactor.GetRedditList(topic);
         } else {
-            this.view.SetDataList(postList);
+            this.view.ShowMessageInfo(this.activity.getString(R.string.message_validation_topics_empty));
         }
     }
 
     @Override
+    public void SetDataList(final List<Child> postList) {
+        if (postList == null || postList.isEmpty()) {
+            this.view.ManagerState(2);
+        } else {
+            this.view.ManagerState(1);
+            this.view.SetDataList(postList);
+        }
+        this.view.AnimationSearchStarOrStop();
+    }
+
+    @Override
     public void InternetNotAvailable() {
-        this.view.ShowMessageInfo(this.activity.getString(R.string.message_internet_not_available));
+        this.view.ManagerState(3);
+        this.view.AnimationSearchStarOrStop();
     }
 }

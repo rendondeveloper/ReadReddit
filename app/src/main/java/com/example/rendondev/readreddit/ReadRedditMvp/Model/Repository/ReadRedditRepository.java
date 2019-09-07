@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.util.Log;
 
 import com.example.rendondev.readreddit.ReadRedditMvp.Data.ReponsePost;
 import com.example.rendondev.readreddit.ReadRedditMvp.Model.Interactor.IReadRedditInteractor;
@@ -34,45 +33,12 @@ public class ReadRedditRepository implements IReadRedditRepository {
     }
 
     @Override
-    public void GetRedditList() {
+    public void GetRedditList(final String topic) {
         if (!this.internetAvailable()) {
             this.interactor.InternetNotAvailable();
+            return;
         }
-
-        try {
-            final Call<ReponsePost> call = this.apiClient.GetRedditList();
-            call.enqueue(new Callback<ReponsePost>() {
-                @Override
-                public void onResponse(Call<ReponsePost> call, Response<ReponsePost> response) {
-                    switch (response.code()) {
-                        case 200:
-                            final ReponsePost responsePost = response.body();
-                            interactor.SetDataList(responsePost.getData().getChildren());
-                            break;
-                        default:
-                            interactor.SetDataList(null);
-                            break;
-                    }
-                }
-
-                @Override
-                public void onFailure(Call<ReponsePost> call, Throwable t) {
-                    interactor.SetDataList(null);
-                }
-            });
-        } catch (Exception ex) {
-            Log.d("", ex.getMessage());
-        }
-    }
-
-
-    @Override
-    public void GetTopicList(final String topic) {
-        if (!this.internetAvailable()) {
-            this.interactor.InternetNotAvailable();
-        }
-
-        final Call<ReponsePost> call = this.apiClient.GetTopicList(topic);
+        final Call<ReponsePost> call = this.apiClient.GetRedditList(topic);
         call.enqueue(new Callback<ReponsePost>() {
             @Override
             public void onResponse(Call<ReponsePost> call, Response<ReponsePost> response) {
@@ -92,6 +58,7 @@ public class ReadRedditRepository implements IReadRedditRepository {
                 interactor.SetDataList(null);
             }
         });
+
     }
 
     private boolean internetAvailable() {

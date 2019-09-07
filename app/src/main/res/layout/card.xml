@@ -28,6 +28,7 @@
                 android:layout_height="wrap_content"
                 android:text="Eliminar"
                 android:textColor="@android:color/white"
+                android:fontFamily="@font/exo_bold"
                 android:textStyle="bold" />
 
             <ImageView
@@ -53,8 +54,8 @@
             android:gravity="center">
 
             <LinearLayout
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:background="@drawable/circle_phote"
                 android:elevation="5dp"
                 android:gravity="center"
@@ -81,6 +82,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="3dp"
+                android:fontFamily="@font/exo_bold"
                 android:textColor="@color/colorPrimary" />
 
             <TextView
@@ -89,6 +91,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
                 android:layout_marginTop="5dp"
+                android:fontFamily="@font/exo_medium"
                 android:textColor="@color/color_message" />
 
             <LinearLayout
@@ -118,6 +121,7 @@
                         android:layout_marginRight="2dp"
                         android:text="123,598"
                         android:textColor="@color/color_data_message"
+                        android:fontFamily="@font/exo_regular"
                         android:textSize="@dimen/size_data_message" />
 
                     <TextView
@@ -125,6 +129,7 @@
                         android:layout_height="wrap_content"
                         android:text="comments"
                         android:textColor="@color/color_data_message"
+                        android:fontFamily="@font/exo_regular"
                         android:textSize="@dimen/size_data_message" />
                 </LinearLayout>
 
@@ -146,8 +151,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="2dp"
                         android:layout_marginRight="2dp"
-                        android:text="5000"
                         android:textColor="@color/color_data_message"
+                        android:fontFamily="@font/exo_regular"
                         android:textSize="@dimen/size_data_message" />
 
                     <TextView
@@ -155,6 +160,7 @@
                         android:layout_height="wrap_content"
                         android:text="ups"
                         android:textColor="@color/color_data_message"
+                        android:fontFamily="@font/exo_regular"
                         android:textSize="@dimen/size_data_message" />
                 </LinearLayout>
 
@@ -176,8 +182,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="2dp"
                         android:layout_marginRight="2dp"
-                        android:text="120"
                         android:textColor="@color/color_data_message"
+                        android:fontFamily="@font/exo_regular"
                         android:textSize="@dimen/size_data_message" />
 
                     <TextView
@@ -185,6 +191,7 @@
                         android:layout_height="wrap_content"
                         android:text="downs"
                         android:textColor="@color/color_data_message"
+                        android:fontFamily="@font/exo_regular"
                         android:textSize="@dimen/size_data_message" />
                 </LinearLayout>
 
