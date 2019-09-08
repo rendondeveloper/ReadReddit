@@ -6,7 +6,7 @@ import com.example.rendondev.readreddit.R;
 import com.example.rendondev.readreddit.ReadRedditMvp.Data.Child;
 import com.example.rendondev.readreddit.ReadRedditMvp.Model.Interactor.IReadRedditInteractor;
 import com.example.rendondev.readreddit.ReadRedditMvp.Model.Interactor.ReadRedditInteractor;
-import com.example.rendondev.readreddit.ReadRedditMvp.View.IReadRedditView;
+import com.example.rendondev.readreddit.ReadRedditMvp.View.ui.IReadRedditView;
 
 import java.util.List;
 
@@ -22,9 +22,9 @@ public class ReadRedditPresenter implements IReadRedditPresenter {
     }
 
     @Override
-    public void GetRedditList(final String topic) {
+    public void GetRedditList(final String topic, final boolean isPullToRefresh) {
         if (topic != null && !topic.isEmpty()) {
-            this.view.ManagerState(0);
+            this.view.ManagerState(isPullToRefresh ? -1 : 0);
             this.view.AnimationSearchStarOrStop();
             this.interactor.GetRedditList(topic);
         } else {

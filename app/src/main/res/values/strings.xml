@@ -1,8 +1,13 @@
 <resources>
     <string name="app_name">ReadReddit</string>
-    <string name="message_validation_topics_empty">Ingresa al menos una letra para buscar en los topics.</string>
+    <string name="message_validation_topics_empty">Ingresa al menos una letra para buscar un tema.</string>
     <string name="text_default">Ok</string>
     <string name="text_default_title">Atención</string>
     <string name="dummy_text_default_edit_text_search">FUNNY</string>
     <string name="text_screen_internet_not_available">Cuando tengas internet podrás realizar búsquedas.</string>
+    <string name="dummy_lorem_iupcso">Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen</string>
+    <string name="dummy_title_lorem_iupcso">¿Qué es Lorem Ipsum?</string>
+    <string name="text_card_drog_reddit">Abrir en Reddit</string>
+    <string name="text_card_drog_gmail">Enviar a un amigo</string>
+    <string name="text_drag_and_drog_indications">Arraste asía abajo y suelte sobre la acción que se realizara.</string>
 </resources>

@@ -1,12 +1,15 @@
-package com.example.rendondev.readreddit.ReadRedditMvp.View;
+package com.example.rendondev.readreddit.ReadRedditMvp.View.ui;
 
 import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -48,6 +51,10 @@ public class ReadRedditActivity extends AppCompatActivity implements IReadReddit
     @BindView(R.id.llInternet)
     LinearLayout llInternet;
 
+    @BindView(R.id.srCards)
+    SwipeRefreshLayout srCards;
+
+
     RotateLoading rlAnimation;
 
     private PostAdapter adapter;
@@ -71,7 +78,7 @@ public class ReadRedditActivity extends AppCompatActivity implements IReadReddit
         this.presenter = new ReadRedditPresenter(this, this);
         this.managerKeyBoardEvent = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         this.rlAnimation = findViewById(R.id.rlAnimation);
-        this.executeSearch();
+        this.executeSearch(false);
 
     }
 
@@ -94,6 +101,10 @@ public class ReadRedditActivity extends AppCompatActivity implements IReadReddit
         } else {
             this.rlAnimation.start();
         }
+
+        if(srCards.isRefreshing()){
+            srCards.setRefreshing(false);
+        }
     }
 
     @Override
@@ -107,28 +118,34 @@ public class ReadRedditActivity extends AppCompatActivity implements IReadReddit
     @Override
     public void ManagerState(final int state) {
         switch (state) {
+            case -1:
+                this.rlAnimation.setVisibility(View.GONE);
+                this.llEmpty.setVisibility(View.GONE);
+                this.srCards.setVisibility(View.VISIBLE);
+                this.llInternet.setVisibility(View.GONE);
+                break;
             case 0: // Search Info
                 this.rlAnimation.setVisibility(View.VISIBLE);
                 this.llEmpty.setVisibility(View.GONE);
-                this.rvCards.setVisibility(View.GONE);
+                this.srCards.setVisibility(View.GONE);
                 this.llInternet.setVisibility(View.GONE);
                 break;
             case 1: // Show Info
                 this.rlAnimation.setVisibility(View.GONE);
                 this.llEmpty.setVisibility(View.GONE);
-                this.rvCards.setVisibility(View.VISIBLE);
+                this.srCards.setVisibility(View.VISIBLE);
                 this.llInternet.setVisibility(View.GONE);
                 break;
             case 2: // Show Empty
                 this.rlAnimation.setVisibility(View.GONE);
                 this.llEmpty.setVisibility(View.VISIBLE);
-                this.rvCards.setVisibility(View.GONE);
+                this.srCards.setVisibility(View.GONE);
                 this.llInternet.setVisibility(View.GONE);
                 break;
             case 3: // Internet Not Available
                 this.rlAnimation.setVisibility(View.GONE);
                 this.llEmpty.setVisibility(View.GONE);
-                this.rvCards.setVisibility(View.GONE);
+                this.srCards.setVisibility(View.GONE);
                 this.llInternet.setVisibility(View.VISIBLE);
                 break;
         }
@@ -141,6 +158,30 @@ public class ReadRedditActivity extends AppCompatActivity implements IReadReddit
         this.adapter = new PostAdapter(this.postList, this);
         this.rvCards.setLayoutManager(linearLayoutManager);
         this.rvCards.setAdapter(this.adapter);
+        this.etSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if(s.length() >= 1){
+                    executeSearch(false);
+                }
+            }
+        });
+
+        srCards.setOnRefreshListener(() -> { executeSearch(true); });
+        srCards.setColorSchemeResources(android.R.color.holo_blue_bright,
+                android.R.color.holo_green_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_red_light);
     }
 
     @OnFocusChange(R.id.etSearch)
@@ -151,13 +192,13 @@ public class ReadRedditActivity extends AppCompatActivity implements IReadReddit
     @OnEditorAction(R.id.etSearch)
     boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
         if (actionId == EditorInfo.IME_ACTION_DONE || event.getKeyCode() == KeyEvent.KEYCODE_ENTER) {
-            executeSearch();
+            executeSearch(false);
         }
         return false;
     }
 
-    private void executeSearch() {
-        this.presenter.GetRedditList(this.etSearch.getText().toString());
+    private void executeSearch(final boolean isPullToRefresh) {
+        this.presenter.GetRedditList(this.etSearch.getText().toString(), isPullToRefresh);
         this.etSearch.clearFocus();
         this.managerKeyBoardEvent.hideSoftInputFromWindow(etSearch.getWindowToken(), 0);
     }

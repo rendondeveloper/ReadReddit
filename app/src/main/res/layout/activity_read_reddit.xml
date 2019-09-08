@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ReadRedditMvp.View.ReadRedditActivity">
+    tools:context=".ReadRedditMvp.View.ui.ReadRedditActivity">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
@@ -31,7 +31,7 @@
             android:layout_marginRight="25dp"
             android:layout_marginTop="10dp"
             android:cursorVisible="true"
-            android:fontFamily="@font/exo_regular"
+            app:fontFamily="@font/exo_regular"
             android:inputType="text"
             android:lines="1"
             android:maxLines="1"
@@ -42,12 +42,20 @@
             android:textColorHighlight="@color/colorPrimary" />
     </android.support.v7.widget.Toolbar>
 
-    <android.support.v7.widget.RecyclerView
-        android:layout_height="match_parent"
-        android:id="@+id/rvCards"
+    <android.support.v4.widget.SwipeRefreshLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/srCards"
         android:layout_width="match_parent"
-        android:orientation="vertical"
-        android:visibility="gone" />
+        android:layout_height="match_parent"
+        android:visibility="gone" >
+
+        <android.support.v7.widget.RecyclerView
+            android:layout_height="match_parent"
+            android:id="@+id/rvCards"
+            android:layout_width="match_parent"
+            android:orientation="vertical"/>
+
+    </android.support.v4.widget.SwipeRefreshLayout>
 
     <LinearLayout
         android:id="@+id/llEmpty"
@@ -58,15 +66,15 @@
         android:visibility="gone">
 
         <ImageView
-            android:layout_width="@dimen/size_screen_empty_or_error"
-            android:layout_height="@dimen/size_screen_empty_or_error"
+            android:layout_width="140dp"
+            android:layout_height="140dp"
             android:scaleType="fitXY"
             android:src="@drawable/empty" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/exo_bold"
+            app:fontFamily="@font/exo_bold"
             android:text="Upppps!!!"
             android:textAlignment="center"
             android:textColor="@color/text_color_title"
@@ -76,8 +84,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:fontFamily="@font/exo_regular"
-            android:text="Prueba con un nuevo topic!"
+            app:fontFamily="@font/exo_regular"
+            android:text="Prueba con un nuevo tema!"
             android:textAlignment="center"
             android:textColor="@color/text_color_title"
             android:textSize="16sp" />
@@ -98,18 +106,18 @@
         android:layout_height="match_parent"
         android:gravity="center"
         android:orientation="vertical"
-        android:visibility="gone">
+        android:visibility="visible">
 
         <ImageView
             android:layout_width="@dimen/size_screen_empty_or_error"
             android:layout_height="@dimen/size_screen_empty_or_error"
-            android:scaleType="fitXY"
+            android:scaleType="centerCrop"
             android:src="@drawable/ic_wifi_fail" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/exo_bold"
+            app:fontFamily="@font/exo_bold"
             android:text="Upppps!!!"
             android:textAlignment="center"
             android:textColor="@color/text_color_title"
@@ -119,8 +127,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:fontFamily="@font/exo_regular"
-            android:text="Hay que pagar los datos, si quieres buscar aquí"
+            app:fontFamily="@font/exo_regular"
+            android:text="No cuentas con una conexión a internet, activa tus datos o wifi, para realizar busquedas de temas"
             android:textAlignment="center"
             android:textColor="@color/text_color_title"
             android:textSize="16sp" />

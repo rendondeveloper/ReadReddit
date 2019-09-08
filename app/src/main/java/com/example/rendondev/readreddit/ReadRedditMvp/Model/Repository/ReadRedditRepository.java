@@ -18,10 +18,11 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ReadRedditRepository implements IReadRedditRepository {
 
+    public static final String URL_BASE = "http://www.reddit.com/r/";
     final private Activity activity;
     final private IReadRedditInteractor interactor;
     final private Retrofit retrofic = new Retrofit.Builder()
-            .baseUrl("http://www.reddit.com/r/")
+            .baseUrl(URL_BASE)
             .addConverterFactory(GsonConverterFactory.create(new GsonBuilder().create()))
             .build();
     final private ApiClient apiClient = retrofic.create(ApiClient.class);

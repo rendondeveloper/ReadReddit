@@ -1,4 +1,4 @@
-package com.example.rendondev.readreddit.ReadRedditMvp.View;
+package com.example.rendondev.readreddit.ReadRedditMvp.View.ui;
 
 import android.view.View;
 

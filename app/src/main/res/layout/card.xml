@@ -6,38 +6,8 @@
     android:layout_height="wrap_content"
     android:layout_marginTop="1dp"
     android:orientation="vertical"
-    cardview:cardCornerRadius="5dp">
-
-    <RelativeLayout
-        android:id="@+id/rlBackground"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#fa315b">
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerInParent="true"
-            android:layout_marginRight="10dp"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Eliminar"
-                android:textColor="@android:color/white"
-                android:fontFamily="@font/exo_bold"
-                android:textStyle="bold" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_delete" />
-        </LinearLayout>
-
-    </RelativeLayout>
+    cardview:cardCornerRadius="5dp"
+    >
 
     <LinearLayout
         android:id="@+id/llInfo"
@@ -45,6 +15,7 @@
         android:layout_height="match_parent"
         android:background="@android:color/white"
         android:orientation="horizontal"
+        android:layout_marginVertical="6dp"
         android:weightSum="1">
 
         <LinearLayout

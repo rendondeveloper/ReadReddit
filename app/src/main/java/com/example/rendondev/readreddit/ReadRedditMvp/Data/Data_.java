@@ -29,6 +29,9 @@ public class Data_ implements Serializable {
     @SerializedName("num_comments")
     @Expose
     private int numComments;
+    @SerializedName("permalink")
+    @Expose
+    private String url;
 
     /**
      * No args constructor for use in serialization
@@ -44,7 +47,7 @@ public class Data_ implements Serializable {
      * @param downs
      * @param ups
      */
-    public Data_(String title, int downs, int ups, String thumbnail, String author, int numComments) {
+    public Data_(String title, int downs, int ups, String thumbnail, String author, int numComments, String url) {
         super();
         this.title = title;
         this.downs = downs;
@@ -52,6 +55,15 @@ public class Data_ implements Serializable {
         this.thumbnail = thumbnail;
         this.author = author;
         this.numComments = numComments;
+        this.url = url;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     public String getTitle() {
@@ -104,7 +116,7 @@ public class Data_ implements Serializable {
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this).append("title", title).append("downs", downs).append("ups", ups).append("thumbnail", thumbnail).append("author", author).append("numComments", numComments).toString();
+        return new ToStringBuilder(this).append("title", title).append("downs", downs).append("ups", ups).append("thumbnail", thumbnail).append("author", author).append("numComments", numComments).append("url", url).toString();
     }
 
 }

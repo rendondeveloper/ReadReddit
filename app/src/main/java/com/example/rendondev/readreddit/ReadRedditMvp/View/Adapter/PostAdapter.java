@@ -1,6 +1,7 @@
 package com.example.rendondev.readreddit.ReadRedditMvp.View.Adapter;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -14,6 +15,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.rendondev.readreddit.R;
 import com.example.rendondev.readreddit.ReadRedditMvp.Data.Child;
+import com.example.rendondev.readreddit.ReadRedditMvp.DragAndDrop.DragAndDrog;
 
 import java.util.List;
 
@@ -24,10 +26,11 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostHolder> {
 
     private final List<Child> list;
     private final Activity activity;
-
+    private final Intent intent;
     public PostAdapter(final List<Child> list, final Activity activity) {
         this.list = list;
         this.activity = activity;
+        this.intent = new Intent(activity, DragAndDrog.class);
     }
 
     @Override
@@ -41,6 +44,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostHolder> {
         final Child itemPosts = list.get(position);
 
         holder.tvAuthor.setText(itemPosts.getData().getAuthor());
+        holder.cvItemRaddit.setTag(position);
         holder.tvTitle.setText(itemPosts.getData().getTitle());
         holder.tvCommentsNumber.setText(String.valueOf(itemPosts.getData().getNumComments()));
         holder.tvNumberUps.setText(String.valueOf(itemPosts.getData().getUps()));
@@ -52,6 +56,12 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostHolder> {
                 .apply(new RequestOptions().circleCrop())
                 .placeholder(R.drawable.ic_place_holder)
                 .into(holder.ivPhoto);
+
+        holder.cvItemRaddit.setOnClickListener(v -> {
+            intent.removeExtra("Child");
+            intent.putExtra("Child", list.get(((int)v.getTag())));
+            activity.startActivity(intent);
+        });
     }
 
     @Override
